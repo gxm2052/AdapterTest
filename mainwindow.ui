@@ -32,14 +32,15 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(255, 255, 255);</string>
+   <string notr="true">background-color: rgb(0, 85, 0);
+background-color: rgb(0, 170, 127);</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QPushButton" name="exitButton">
+   <widget class="QPushButton" name="startButton">
     <property name="geometry">
      <rect>
-      <x>60</x>
-      <y>30</y>
+      <x>590</x>
+      <y>40</y>
       <width>120</width>
       <height>120</height>
      </rect>
@@ -75,6 +76,91 @@ background-color: rgb(255, 255, 127);</string>
      <string>开始</string>
     </property>
    </widget>
+   <widget class="QLabel" name="adapter_name">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>30</y>
+      <width>400</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>400</width>
+      <height>40</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>400</width>
+      <height>40</height>
+     </size>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>20</pointsize>
+      <weight>75</weight>
+      <italic>false</italic>
+      <bold>true</bold>
+      <underline>false</underline>
+      <strikeout>false</strikeout>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 127);
+color: rgb(255, 0, 0);</string>
+    </property>
+    <property name="text">
+     <string>CQ15-140100-AG</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="stopButton">
+    <property name="geometry">
+     <rect>
+      <x>590</x>
+      <y>170</y>
+      <width>120</width>
+      <height>120</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>120</width>
+      <height>120</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>120</width>
+      <height>120</height>
+     </size>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>16</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 127);
+color: rgb(255, 0, 0);</string>
+    </property>
+    <property name="text">
+     <string>结束</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
@@ -85,35 +171,22 @@ background-color: rgb(255, 255, 127);</string>
      <height>21</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menu">
+   <widget class="QMenu" name="fileMenu">
     <property name="title">
      <string>文件(&amp;F)</string>
     </property>
-    <addaction name="actionExit"/>
+    <addaction name="exitAction"/>
    </widget>
-   <widget class="QMenu" name="menu_2">
-    <property name="title">
-     <string>帮助(&amp;H)</string>
-    </property>
-   </widget>
-   <widget class="QMenu" name="menu_3">
-    <property name="title">
-     <string>选择适配器</string>
-    </property>
-   </widget>
-   <widget class="QMenu" name="menu_4">
-    <property name="title">
-     <string>配置适配器</string>
-    </property>
-   </widget>
-   <addaction name="menu"/>
-   <addaction name="menu_3"/>
-   <addaction name="menu_4"/>
-   <addaction name="menu_2"/>
+   <addaction name="fileMenu"/>
   </widget>
-  <action name="actionExit">
+  <action name="exitAction">
    <property name="text">
-    <string>Exit</string>
+    <string>退出</string>
+   </property>
+  </action>
+  <action name="configureAction">
+   <property name="text">
+    <string>配置</string>
    </property>
   </action>
  </widget>
@@ -121,23 +194,7 @@ background-color: rgb(255, 255, 127);</string>
  <resources/>
  <connections>
   <connection>
-   <sender>exitButton</sender>
-   <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>on_close()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>137</x>
-     <y>150</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>208</x>
-     <y>436</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>actionExit</sender>
+   <sender>exitAction</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
    <slot>on_close()</slot>

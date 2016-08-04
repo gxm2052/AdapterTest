@@ -17,6 +17,9 @@ public:
 
 public slots:
     void on_close();
+    void on_choose(QAction* action);
+private:
+    void createMenu();
 
 private:
     Ui::MainWindow *ui;
