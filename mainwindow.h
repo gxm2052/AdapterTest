@@ -25,9 +25,11 @@ public slots:
     void on_choose(QAction* action);
 private:
     void createMenu();
+    bool initDB();
 
 private:
     Ui::MainWindow *ui;
+    QSqlDatabase db;
 };
 
 #endif // MAINWINDOW_H

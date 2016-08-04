@@ -7,15 +7,53 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    // init sqlite3
-    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("adapters.sqlite"); // 数据库名与路径, 此时是放在同目录下
-    bool ok = db.open(); // 连接数据库, 然后就可以使用了.
-    if(ok){
-
+    if(! initDB())
+    {
+        qDebug("init db failed!");
     }
 
     this->createMenu();
+}
+
+bool MainWindow::initDB()
+{
+    db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setDatabaseName("adapters.sqlite"); // 数据库名与路径, 此时是放在同目录下,调试时路径不一样
+    if (!db.open())
+    {
+        qDebug("datebase not opened!");
+        return false;
+    }
+
+    // 创建数据表
+    QSqlQuery query;
+    bool ok = false;
+    ok = query.exec("CREATE TABLE IF NOT EXISTS adapter (id INTEGER PRIMARY KEY AUTOINCREMENT,"
+                         "name VARCHAR(30) NOT NULL,"
+                         "voltage_lower float,"
+                         "voltage_upper float,"
+                         "current_lower float,"
+                         "current_upper float"
+                         ")");
+    if(!ok)
+    {
+        qDebug("create table adapter failed!");
+        return false;
+    }
+
+    ok = query.exec("CREATE TABLE IF NOT EXISTS sample (id INTEGER PRIMARY KEY AUTOINCREMENT,"
+                         "type INTEGER, "
+                         "voltage float, "
+                         "current float, "
+                         "result boolean, "
+                         "test_time date"
+                         ")");
+    if(!ok)
+    {
+        qDebug("create table sample failed! ");
+    }
+
+    return true;
 }
 
 MainWindow::~MainWindow()
