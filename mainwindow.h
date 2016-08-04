@@ -3,6 +3,11 @@
 
 #include <QMainWindow>
 
+#include <QtSql/QSqlDatabase>
+#include <QtSql/QSqlQuery>
+#include <QtSql/QSqlError>
+#include <QtSql/QSqlDriver>
+
 namespace Ui {
 class MainWindow;
 }

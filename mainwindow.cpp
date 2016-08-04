@@ -6,6 +6,15 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    // init sqlite3
+    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setDatabaseName("adapters.sqlite"); // 数据库名与路径, 此时是放在同目录下
+    bool ok = db.open(); // 连接数据库, 然后就可以使用了.
+    if(ok){
+
+    }
+
     this->createMenu();
 }
 
@@ -42,7 +51,7 @@ void MainWindow::createMenu()
     connect(adapterMenu, SIGNAL(triggered(QAction*)), this, SLOT(on_choose(QAction*)));
 
     QMenu *configMenu = this->ui->menuBar->addMenu(tr("配置"));
-
+    // todo
 }
 
 
