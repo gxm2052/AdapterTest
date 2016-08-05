@@ -8,13 +8,16 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     setWindowTitle("适配器在线检测");
-    setWindowState(Qt::WindowMaximized);
+    //setWindowState(Qt::WindowMaximized);
     if(! initDB())
     {
         qDebug("init db failed!");
     }
 
     this->createMenu();
+
+    this->ui->startButton->hide();
+    this->ui->stopButton->hide();
 }
 
 bool MainWindow::initDB()
@@ -72,6 +75,28 @@ void MainWindow::on_choose(QAction* action)
 {
     QString strText = action->text();    //根据text来判断具体的action操作
     this->ui->adapter_name->setText(strText);
+
+    // 设置参数
+    QSqlQuery query;
+    query.prepare("select * from adapter where name=:name");
+    query.bindValue(":name", strText);
+    query.exec();
+
+    while (query.next())
+    {
+        QString voltageLower = query.value(2).toString();
+        QString voltageUpper = query.value(3).toString();
+        QString currentLower = query.value(4).toString();
+        QString currentUpper = query.value(5).toString();
+
+        this->ui->voltageLowerLabel->setText("下限值： "+voltageLower + " V");
+        this->ui->voltageUpperLabel->setText("上限值： "+voltageUpper + " V");
+        this->ui->currentLowerLabel->setText("下限值： "+currentLower + " A");
+        this->ui->currentUpperLabel->setText("上限值： "+currentUpper + " A");
+
+        this->ui->startButton->show();
+        return ;
+    }
 }
 
 bool MainWindow::insertData()
@@ -125,6 +150,20 @@ void MainWindow::createMenu()
 bool MainWindow::addActionToAdapterMenu(int id, QString name)
 {
     return true;
+}
+
+void MainWindow::start_test()
+{
+    qDebug("start_test");
+    this->ui->stopButton->show();
+    this->ui->startButton->hide();
+}
+
+void MainWindow::stop_test()
+{
+    qDebug("stop_test");
+    this->ui->stopButton->hide();
+    this->ui->startButton->show();
 }
 
 

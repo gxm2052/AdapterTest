@@ -23,6 +23,8 @@ public:
 public slots:
     void on_close();
     void on_choose(QAction* action);
+    void start_test();
+    void stop_test();
 private:
     void createMenu();
     bool initDB();
