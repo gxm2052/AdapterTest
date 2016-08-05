@@ -26,6 +26,8 @@ public slots:
 private:
     void createMenu();
     bool initDB();
+    bool insertData();
+    bool addActionToAdapterMenu(int id, QString name);
 
 private:
     Ui::MainWindow *ui;

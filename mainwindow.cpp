@@ -1,12 +1,14 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "qdebug.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
+    setWindowTitle("适配器在线检测");
+    setWindowState(Qt::WindowMaximized);
     if(! initDB())
     {
         qDebug("init db failed!");
@@ -72,9 +74,34 @@ void MainWindow::on_choose(QAction* action)
     this->ui->adapter_name->setText(strText);
 }
 
+bool MainWindow::insertData()
+{
+//    if(!query.exec("INSERT INTO student (name, age) VALUES (\"TOM\", 10)")){
+//    qDebug() << "INSERT Failed!";
+//    }
+}
+
 void MainWindow::createMenu()
 {
     QMenu *adapterMenu = menuBar()->addMenu(tr("适配器"));
+
+    QSqlQuery query;
+    query.exec("SELECT * from adapter");
+    QString string;
+    while (query.next())
+    {
+        QString id = query.value(0).toString();
+        QString name = query.value(1).toString();
+        //qDebug("id:%s name:%s", id, name);
+        qDebug("id:%s, name:%s", qPrintable(id), qPrintable(name));
+
+        QAction* action;
+        action = new QAction(name, this);
+        adapterMenu->addAction(action);
+    }
+
+
+    /*
     QAction *action;
 
     action = new QAction(tr("CQ15-140100-AG"), this);
@@ -85,11 +112,19 @@ void MainWindow::createMenu()
 
     action = new QAction(tr("ZD12D140100-BS"), this);
     adapterMenu->addAction(action);
+    */
 
     connect(adapterMenu, SIGNAL(triggered(QAction*)), this, SLOT(on_choose(QAction*)));
 
-    QMenu *configMenu = this->ui->menuBar->addMenu(tr("配置"));
-    // todo
+    QMenu *configMenu = this->ui->menuBar->addMenu(tr("工具"));
+    QAction *configAction;
+    configAction = new QAction(tr("选项"), this);
+    configMenu->addAction(configAction);
+}
+
+bool MainWindow::addActionToAdapterMenu(int id, QString name)
+{
+    return true;
 }
 
 
