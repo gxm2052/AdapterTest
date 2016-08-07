@@ -7,10 +7,13 @@
 #include <QtSql/QSqlQuery>
 #include <QtSql/QSqlError>
 #include <QtSql/QSqlDriver>
+#include <QtSerialPort/QSerialPort>
 
 namespace Ui {
 class MainWindow;
 }
+
+class SettingsDialog;
 
 class MainWindow : public QMainWindow
 {
@@ -32,8 +35,13 @@ private:
     bool addActionToAdapterMenu(int id, QString name);
 
 private:
+    void initActionsConnections();
+
+private:
     Ui::MainWindow *ui;
     QSqlDatabase db;
+    SettingsDialog *settings;
+    QSerialPort *serial;
 };
 
 #endif // MAINWINDOW_H

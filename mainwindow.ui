@@ -490,7 +490,7 @@ color: rgb(255, 0, 0);</string>
    <hints>
     <hint type="sourcelabel">
      <x>853</x>
-     <y>84</y>
+     <y>141</y>
     </hint>
     <hint type="destinationlabel">
      <x>765</x>
@@ -505,8 +505,8 @@ color: rgb(255, 0, 0);</string>
    <slot>stop_test()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>877</x>
-     <y>232</y>
+     <x>869</x>
+     <y>311</y>
     </hint>
     <hint type="destinationlabel">
      <x>939</x>
