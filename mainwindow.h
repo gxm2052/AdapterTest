@@ -23,13 +23,16 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-public slots:
+private slots:
     void on_close();
     void on_choose(QAction* action);
     void start_test();
     void stop_test();
     void openSerialPort();
     void closeSerialPort();
+
+    void writeData(const QByteArray &data);
+    void readData();
 
 private:
     void createMenu();

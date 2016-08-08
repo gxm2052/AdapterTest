@@ -19,7 +19,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     status->setText("适配器在线检测系统");
 
-
+    connect(serial, &QSerialPort::readyRead, this, &MainWindow::readData);
 
     //setWindowState(Qt::WindowMaximized);
     if(! initDB())
@@ -166,6 +166,7 @@ void MainWindow::start_test()
     qDebug("start_test");
     this->ui->stopButton->show();
     this->ui->startButton->hide();
+    writeData("open a\r\n");
 }
 
 void MainWindow::stop_test()
@@ -173,6 +174,7 @@ void MainWindow::stop_test()
     qDebug("stop_test");
     this->ui->stopButton->hide();
     this->ui->startButton->show();
+    writeData("close a\r\n");
 }
 
 void MainWindow::initActionsConnections()
@@ -197,6 +199,7 @@ void MainWindow::openSerialPort()
         showStatusMessage(tr("连接到串口: %1   波特率 : %2   数据位：%3   奇偶校验：%4   停止位：%5   流控制：%6")
                           .arg(p.name).arg(p.stringBaudRate).arg(p.stringDataBits)
                           .arg(p.stringParity).arg(p.stringStopBits).arg(p.stringFlowControl));
+        ui->startButton->show();
     }
     else
     {
@@ -222,7 +225,18 @@ void MainWindow::showStatusMessage(const QString &message)
     status->setText(message);
 }
 
+// 写入串口数据
+void MainWindow::writeData(const QByteArray &data)
+{
+    serial->write(data);
+}
 
+// 读取串口数据
+void MainWindow::readData()
+{
+    QByteArray data = serial->readAll();
+    qDebug("receive: %s", (const char*)data);
+}
 
 
 
