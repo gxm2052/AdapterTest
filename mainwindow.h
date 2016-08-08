@@ -28,6 +28,9 @@ public slots:
     void on_choose(QAction* action);
     void start_test();
     void stop_test();
+    void openSerialPort();
+    void closeSerialPort();
+
 private:
     void createMenu();
     bool initDB();
@@ -36,6 +39,7 @@ private:
 
 private:
     void initActionsConnections();
+    void showStatusMessage(const QString &message);
 
 private:
     Ui::MainWindow *ui;

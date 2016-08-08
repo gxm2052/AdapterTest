@@ -19,6 +19,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     status->setText("适配器在线检测系统");
 
+
+
     //setWindowState(Qt::WindowMaximized);
     if(! initDB())
     {
@@ -27,8 +29,13 @@ MainWindow::MainWindow(QWidget *parent) :
 
     this->createMenu();
 
+    initActionsConnections();
+
     this->ui->startButton->hide();
     this->ui->stopButton->hide();
+
+    ui->actionConnect->setEnabled(true);
+    ui->actionDisconnect->setEnabled(false);
 }
 
 bool MainWindow::initDB()
@@ -170,9 +177,50 @@ void MainWindow::stop_test()
 
 void MainWindow::initActionsConnections()
 {
-
+    connect(ui->actionConnect, &QAction::triggered, this, &MainWindow::openSerialPort);
+    connect(ui->actionDisconnect, &QAction::triggered, this, &MainWindow::closeSerialPort);
 }
 
+void MainWindow::openSerialPort()
+{
+    SettingsDialog::Settings p = settings->settings();
+    serial->setPortName(p.name);
+    serial->setBaudRate(p.baudRate);
+    serial->setDataBits(p.dataBits);
+    serial->setParity(p.parity);
+    serial->setStopBits(p.stopBits);
+    serial->setFlowControl(p.flowControl);
+    if (serial->open(QIODevice::ReadWrite))
+    {
+        ui->actionConnect->setEnabled(false);
+        ui->actionDisconnect->setEnabled(true);
+        showStatusMessage(tr("连接到串口: %1   波特率 : %2   数据位：%3   奇偶校验：%4   停止位：%5   流控制：%6")
+                          .arg(p.name).arg(p.stringBaudRate).arg(p.stringDataBits)
+                          .arg(p.stringParity).arg(p.stringStopBits).arg(p.stringFlowControl));
+    }
+    else
+    {
+        showStatusMessage(tr("打开串口错误"));
+    }
+}
+
+void MainWindow::closeSerialPort()
+{
+    if (serial->isOpen())
+    {
+        serial->close();
+    }
+
+    ui->actionConnect->setEnabled(true);
+    ui->actionDisconnect->setEnabled(false);
+
+    showStatusMessage(tr("断开连接"));
+}
+
+void MainWindow::showStatusMessage(const QString &message)
+{
+    status->setText(message);
+}
 
 
 

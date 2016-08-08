@@ -448,7 +448,7 @@ color: rgb(255, 0, 0);</string>
     <property name="title">
      <string>调用</string>
     </property>
-    <addaction name="actionConnecting"/>
+    <addaction name="actionConnect"/>
     <addaction name="actionDisconnect"/>
     <addaction name="separator"/>
     <addaction name="exitAction"/>
@@ -466,7 +466,7 @@ color: rgb(255, 0, 0);</string>
     <string>配置</string>
    </property>
   </action>
-  <action name="actionConnecting">
+  <action name="actionConnect">
    <property name="text">
     <string>连接</string>
    </property>
