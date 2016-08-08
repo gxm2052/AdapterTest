@@ -39,6 +39,7 @@ private:
     bool initDB();
     bool insertData();
     bool addActionToAdapterMenu(int id, QString& name);
+    void processLine(const QByteArray & line);
 
 private:
     void initActionsConnections();

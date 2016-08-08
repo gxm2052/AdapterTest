@@ -36,6 +36,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->actionConnect->setEnabled(true);
     ui->actionDisconnect->setEnabled(false);
+    ui->testButton->hide();
 }
 
 bool MainWindow::initDB()
@@ -163,7 +164,7 @@ bool MainWindow::addActionToAdapterMenu(int id, QString& name)
 
 void MainWindow::start_test()
 {
-    qDebug("start_test");
+    //qDebug("start_test");
     this->ui->stopButton->show();
     this->ui->startButton->hide();
     writeData("open a\r\n");
@@ -171,7 +172,7 @@ void MainWindow::start_test()
 
 void MainWindow::stop_test()
 {
-    qDebug("stop_test");
+    //qDebug("stop_test");
     this->ui->stopButton->hide();
     this->ui->startButton->show();
     writeData("close a\r\n");
@@ -234,10 +235,24 @@ void MainWindow::writeData(const QByteArray &data)
 // 读取串口数据
 void MainWindow::readData()
 {
-    QByteArray data = serial->readAll();
-    qDebug("receive: %s", (const char*)data);
+    while (serial->canReadLine()) {
+        processLine(serial->readLine());
+    }
 }
 
+void MainWindow::processLine(const QByteArray & line)
+{
+     if(strcmp(line.data(), "start test\r\n")==0)
+     {
+         qDebug("start");
+         ui->testButton->show();
+     }
+     else if(strcmp(line.data(), "stop test\r\n")==0)
+     {
+         qDebug("stop");
+         ui->testButton->hide();
+     }
+}
 
 
 
