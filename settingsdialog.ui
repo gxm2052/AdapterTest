@@ -17,7 +17,7 @@
    <item row="0" column="0">
     <widget class="QGroupBox" name="selectBox">
      <property name="title">
-      <string>Select Serial Port</string>
+      <string>选择串口</string>
      </property>
      <layout class="QGridLayout" name="gridLayout">
       <item row="0" column="0">
@@ -26,42 +26,42 @@
       <item row="1" column="0">
        <widget class="QLabel" name="descriptionLabel">
         <property name="text">
-         <string>Description:</string>
+         <string>描述:</string>
         </property>
        </widget>
       </item>
       <item row="2" column="0">
        <widget class="QLabel" name="manufacturerLabel">
         <property name="text">
-         <string>Manufacturer:</string>
+         <string>制造商:</string>
         </property>
        </widget>
       </item>
       <item row="3" column="0">
        <widget class="QLabel" name="serialNumberLabel">
         <property name="text">
-         <string>Serial number:</string>
+         <string>序列号:</string>
         </property>
        </widget>
       </item>
       <item row="4" column="0">
        <widget class="QLabel" name="locationLabel">
         <property name="text">
-         <string>Location:</string>
+         <string>位置:</string>
         </property>
        </widget>
       </item>
       <item row="5" column="0">
        <widget class="QLabel" name="vidLabel">
         <property name="text">
-         <string>Vendor ID:</string>
+         <string>供应商标识符:</string>
         </property>
        </widget>
       </item>
       <item row="6" column="0">
        <widget class="QLabel" name="pidLabel">
         <property name="text">
-         <string>Product ID:</string>
+         <string>产品标识符:</string>
         </property>
        </widget>
       </item>
@@ -71,13 +71,13 @@
    <item row="0" column="1">
     <widget class="QGroupBox" name="parametersBox">
      <property name="title">
-      <string>Select Parameters</string>
+      <string>选择参数</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_2">
       <item row="0" column="0">
        <widget class="QLabel" name="baudRateLabel">
         <property name="text">
-         <string>BaudRate:</string>
+         <string>波特率:</string>
         </property>
        </widget>
       </item>
@@ -87,7 +87,7 @@
       <item row="1" column="0">
        <widget class="QLabel" name="dataBitsLabel">
         <property name="text">
-         <string>Data bits:</string>
+         <string>数据位:</string>
         </property>
        </widget>
       </item>
@@ -97,7 +97,7 @@
       <item row="2" column="0">
        <widget class="QLabel" name="parityLabel">
         <property name="text">
-         <string>Parity:</string>
+         <string>奇偶校验位:</string>
         </property>
        </widget>
       </item>
@@ -107,7 +107,7 @@
       <item row="3" column="0">
        <widget class="QLabel" name="stopBitsLabel">
         <property name="text">
-         <string>Stop bits:</string>
+         <string>停止位:</string>
         </property>
        </widget>
       </item>
@@ -117,7 +117,7 @@
       <item row="4" column="0">
        <widget class="QLabel" name="flowControlLabel">
         <property name="text">
-         <string>Flow control:</string>
+         <string>流控制:</string>
         </property>
        </widget>
       </item>
@@ -130,13 +130,13 @@
    <item row="1" column="0" colspan="2">
     <widget class="QGroupBox" name="additionalOptionsGroupBox">
      <property name="title">
-      <string>Additional options</string>
+      <string>额外选项</string>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
        <widget class="QCheckBox" name="localEchoCheckBox">
         <property name="text">
-         <string>Local echo</string>
+         <string>本地回传</string>
         </property>
         <property name="checked">
          <bool>true</bool>
@@ -164,7 +164,7 @@
      <item>
       <widget class="QPushButton" name="applyButton">
        <property name="text">
-        <string>Apply</string>
+        <string>应用</string>
        </property>
       </widget>
      </item>

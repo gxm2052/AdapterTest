@@ -49,8 +49,11 @@ private slots:
 
 private:
     void fillPortsParameters();
-    void fillPortsInfo();
+
     void updateSettings();
+
+public slots:
+    void fillPortsInfo();
 
 private:
     Ui::SettingsDialog *ui;

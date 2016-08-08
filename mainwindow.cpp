@@ -11,9 +11,13 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     setWindowTitle("适配器在线检测");
 
-
     serial = new QSerialPort(this);
     settings = new SettingsDialog;
+
+    status = new QLabel;
+    ui->statusBar->addWidget(status);
+
+    status->setText("适配器在线检测系统");
 
     //setWindowState(Qt::WindowMaximized);
     if(! initDB())
@@ -112,6 +116,7 @@ bool MainWindow::insertData()
 //    if(!query.exec("INSERT INTO student (name, age) VALUES (\"TOM\", 10)")){
 //    qDebug() << "INSERT Failed!";
 //    }
+    return true;
 }
 
 void MainWindow::createMenu()
@@ -140,10 +145,11 @@ void MainWindow::createMenu()
     configAction = new QAction(tr("配置"), this);
     configMenu->addAction(configAction);
 
-    connect(configAction, &QAction::triggered, settings, &MainWindow::show);
+    connect(configAction, &QAction::triggered, settings, &SettingsDialog::show);
+    connect(configAction, &QAction::triggered, settings, &SettingsDialog::fillPortsInfo);
 }
 
-bool MainWindow::addActionToAdapterMenu(int id, QString name)
+bool MainWindow::addActionToAdapterMenu(int id, QString& name)
 {
     return true;
 }

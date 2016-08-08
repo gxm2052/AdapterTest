@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-
+#include <QLabel>
 #include <QtSql/QSqlDatabase>
 #include <QtSql/QSqlQuery>
 #include <QtSql/QSqlError>
@@ -32,7 +32,7 @@ private:
     void createMenu();
     bool initDB();
     bool insertData();
-    bool addActionToAdapterMenu(int id, QString name);
+    bool addActionToAdapterMenu(int id, QString& name);
 
 private:
     void initActionsConnections();
@@ -41,6 +41,7 @@ private:
     Ui::MainWindow *ui;
     QSqlDatabase db;
     SettingsDialog *settings;
+    QLabel *status;
     QSerialPort *serial;
 };
 

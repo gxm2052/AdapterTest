@@ -446,12 +446,16 @@ color: rgb(255, 0, 0);</string>
    </property>
    <widget class="QMenu" name="fileMenu">
     <property name="title">
-     <string>文件</string>
+     <string>调用</string>
     </property>
+    <addaction name="actionConnecting"/>
+    <addaction name="actionDisconnect"/>
+    <addaction name="separator"/>
     <addaction name="exitAction"/>
    </widget>
    <addaction name="fileMenu"/>
   </widget>
+  <widget class="QStatusBar" name="statusBar"/>
   <action name="exitAction">
    <property name="text">
     <string>退出</string>
@@ -460,6 +464,16 @@ color: rgb(255, 0, 0);</string>
   <action name="configureAction">
    <property name="text">
     <string>配置</string>
+   </property>
+  </action>
+  <action name="actionConnecting">
+   <property name="text">
+    <string>连接</string>
+   </property>
+  </action>
+  <action name="actionDisconnect">
+   <property name="text">
+    <string>断开</string>
    </property>
   </action>
  </widget>
